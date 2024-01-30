@@ -1,8 +1,17 @@
-export default function Card({ title, body, id }) {
+export default function Card({ title, body, img, href }) {
   return (
-    <div className="d-flex p-5" style={{ width: "800px" }} key={id}>
+    <a
+      style={{
+        textDecoration: "none",
+        outline: "none",
+        color: "black",
+        maxWidth: "800px",
+      }}
+      href={href}
+      className="d-flex p-5"
+    >
       <div className="justify-content-start">
-        <img src="https://picsum.photos/150" />
+        <img src={img} />
       </div>
       <div className="flex-column justify-content-start ps-5">
         <div>
@@ -16,6 +25,6 @@ export default function Card({ title, body, id }) {
           <p>{body}...</p>
         </div>
       </div>
-    </div>
+    </a>
   );
 }

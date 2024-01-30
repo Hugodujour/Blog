@@ -1,8 +1,9 @@
 import useHashPage from "./hooks/useHashPage";
 import Home from "./pages/Home";
+import Post from "./pages/Post";
 
 function App() {
-  const { page } = useHashPage();
+  const { page, param } = useHashPage();
 
   return (
     <>
@@ -11,6 +12,7 @@ function App() {
       <a href="#contact">Contact</a>
       <p>Page : {page}</p>
       {page === "home" && <Home />}
+      {page === `post` && <Post param={param} />}
     </>
   );
 }

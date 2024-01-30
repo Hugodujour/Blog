@@ -11,5 +11,10 @@ export default function useHashPage() {
     () => window.removeEventListener("hashchange", change);
   }, []);
 
-  return { page: hash.replaceAll("#", "").toLowerCase() || "home" };
+  const cleanedHash = hash.replaceAll("#", "").toLowerCase();
+
+  return {
+    page: cleanedHash ? cleanedHash.split(":")[0] : "home",
+    param: cleanedHash ? cleanedHash.split(":")[1] : "home",
+  };
 }

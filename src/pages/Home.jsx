@@ -3,20 +3,32 @@ import Card from "../components/Card";
 
 export default function Home() {
   const { data, errors, loading } = useFetch(
-    "https://jsonplaceholder.typicode.com/posts?_limit=10&_delay=2000"
+    "https://jsonplaceholder.typicode.com/posts?_limit=7&_delay=6000"
   );
 
   const arr = [];
 
+  if (errors) {
+    return <p>Errors : {errors.toString()} </p>;
+  }
+
+  if (loading) {
+    return <p>Chargement...</p>;
+  }
+
   return (
     <>
-      {errors && <p>Errors : {errors.toString()} </p>}
-      {loading && <p>Chargement...</p>}
       {data &&
         JSON.stringify(
           data.map((e) =>
             arr.push(
-              <Card title={e.title} body={e.body} id={e.id} key={e.id} />
+              <Card
+                title={e.title}
+                body={e.body}
+                key={e.id}
+                img={`https://picsum.photos/id/4${e.id}/150`}
+                href={`#post:${e.id}`}
+              />
             )
           )
         )}
